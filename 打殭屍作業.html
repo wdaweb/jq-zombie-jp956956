@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        background: url("./A0943499.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 1460px;
+      }
+      #container {
+        width: 90%;
+        height: 300px;
+        position: relative;
+      }
+      #dirty {
+        background-color: rgb(0, 0, 0, 0);
+      }
+      #boat-area {
+        width: 100%;
+        height: 250px;
+        position: relative;
+      }
+      #sea {
+        width: 100%;
+        height: 900px;
+        position: relative;
+      }
+      #info {
+        font-size: 5rem;
+        text-align: left;
+        position: relative;
+        width: 100%;
+        height: 10%;
+        margin-left: 10%;
+      }
+      ul {
+        border-collapse: collapse;
+        font-size: 0;
+        width: 1000px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: auto;
+        display: inline-block;
+      }
+      li {
+        display: inline-block;
+        width: 10px;
+        height: 50px;
+      }
+      li:nth-child(1) {
+        border-radius: 20px 0 0 20px;
+      }
+      li:nth-child(100) {
+        border-radius: 0 20px 20px 0;
+      }
+      .red {
+        background: red;
+      }
+      #pollution {
+        display: inline-block;
+      }
+      input {
+        width: 100px;
+        height: 80px;
+      }
+      #sea img {
+        position: absolute;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 計量表 資訊等等內容 -->
+    <div id="container">
+      <div id="info">
+        <input type="button" value="拯救海洋" id="btn-start" />
+        <p id="pollution">汙染程度</p>
+        <ul id="box">
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+          <li class="bad"></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 遊戲執行畫面區域 -->
+    <div id="dirty">
+      <!-- 船行走區域 -->
+      <div id="boat-area">
+        <img src="./boat.png" id="boat" />
+      </div>
+      <!-- 垃圾點擊區域 -->
+      <div id="sea"></div>
+    </div>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+      // 定義垃圾及汙染
+      let trushlist = ["飲料杯", "塑膠袋", "漁網", "寶特瓶"];
+      let trush = 0;
+
+      // 垃圾編號
+      let id = 0;
+      // 隨機取亂數
+      const rand = (num) => {
+        return Math.floor(Math.random() * num);
+      };
+
+      const movetrush = (id) => {
+        $(`#trush${id}`).animate(
+          {
+            left: rand(70) + "%",
+            top: rand(70) + "%",
+          },
+          10000,
+          function () {
+            movetrush(id);
+          }
+        );
+      };
+      const moveboat = () => {
+        $(`#boat`).animate(
+          {
+            left: rand(70) + "%",
+            top: rand(70) + "%",
+          },
+          1000,
+          function () {
+            moveboat();
+          }
+        );
+      };
+
+      // 點擊開始
+      $("#btn-start").click(function () {
+        $(this).attr("disabled", true);
+        // 重新設定參數
+        let timer = setInterval(function () {
+          $("#sea").append(
+            `<img src="./${trushlist[rand(4)]}.png" id="trush${id}">`
+          );
+          // 汙染計量表
+          $(".bad")[trush].classList.add("red");
+          $("#dirty").css("background-color", `rgb(0, 0, 0, 0.${trush})`);
+          trush++;
+          // 汙染達到100時，遊戲結束
+          if (trush == 100) {
+            clearInterval(timer);
+            trush = 0;
+            $(".bad").removeClass("red");
+            $("#btn-start").attr("disabled", false);
+            $("#sea img").remove();
+            $("#dirty").css("background-color", `rgb(255, 255, 255,0)`);
+            setTimeout(() => {
+              alert("人類滅亡了");
+            }, 50);
+          }
+          // 垃圾移動
+          $(`#trush${id}`).css({
+            left: rand(70) + "%",
+            top: rand(70) + "%",
+          });
+          movetrush(id);
+          id++;
+
+          // 船移動
+          $(`#boat`).css({
+            left: rand(70) + "%",
+            top: rand(70) + "%",
+          });
+          moveboat();
+        }, 1000);
+      });
+
+      // 點擊消除垃圾
+    </script>
+  </body>
+</html>
