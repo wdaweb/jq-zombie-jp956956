@@ -247,7 +247,11 @@
           );
           // 汙染計量表
           $(".bad")[trush].classList.add("red");
-          $("#dirty").css("background-color", `rgb(0, 0, 0, 0.${trush})`);
+          if(trush<10){
+            $("#dirty").css("background-color", `rgb(0, 0, 0, 0.0${trush})`);
+          }else{
+            $("#dirty").css("background-color", `rgb(0, 0, 0, 0.${trush})`);
+          }
           trush++;
           // 汙染達到100時，遊戲結束
           if (trush == 100) {
@@ -276,9 +280,15 @@
           });
           moveboat();
         }, 1000);
+              // 點擊消除垃圾
+      $("#sea").on("click", "img", function(){
+            $(this).stop();
+            $(this).remove();
+            trush--;
+            $(".bad")[trush].classList.remove("red");
+        })
       });
 
-      // 點擊消除垃圾
     </script>
   </body>
 </html>
